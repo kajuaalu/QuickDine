@@ -3,9 +3,7 @@
 
 import { Request, Response } from 'express';
 import User, { IUser } from '../models/User.js';
-// @ts-ignore -- runtime dependency; install bcryptjs to use this controller.
 import bcrypt from 'bcryptjs';
-// @ts-ignore -- runtime dependency; install jsonwebtoken to use this controller.
 import jwt from 'jsonwebtoken';
 import {AuthRequest} from '../middlewares/auth.js';
 
