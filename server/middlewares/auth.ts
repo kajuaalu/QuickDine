@@ -50,7 +50,7 @@ export const adminOnly = (req: AuthRequest, res: Response, next: NextFunction): 
 };
 
 export const OwnerOnly = (req: AuthRequest, res: Response, next: NextFunction): void => {
-    if (req.user && req.user.role === 'owner' || req.user.role === 'admin') {
+    if (req.user && (req.user.role === 'owner' || req.user.role === 'admin')) {
         next();
     } else {
         res.status(403).json({ message: 'Access denied, restaurant owner only' });
