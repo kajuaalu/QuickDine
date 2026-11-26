@@ -1,0 +1,95 @@
+import mongoose, { Schema } from 'mongoose';
+const RestaurantSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    cuisine: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    priceRange: {
+        type: String,
+        enum: ['$', '$$', '$$$', '$$$$'],
+        required: true,
+    },
+    rating: {
+        type: Number,
+        default: 5.0,
+        min: 1,
+        max: 5,
+    },
+    reviewCount: {
+        type: Number,
+        default: 0,
+        min: 0,
+    },
+    location: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    address: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    image: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    chef: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    tags: {
+        type: [String],
+        default: [],
+    },
+    availableSlots: {
+        type: [String],
+        default: [],
+    },
+    featured: {
+        type: Boolean,
+        default: false,
+    },
+    exclusive: {
+        type: Boolean,
+        default: false,
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        default: 'pending',
+    },
+    totalSeats: {
+        type: Number,
+        min: 20,
+    },
+}, {
+    timestamps: true,
+});
+const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
+export default Restaurant;
